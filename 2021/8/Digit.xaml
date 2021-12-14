@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="_8.Digit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_8"
+             mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="370" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources> 
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Rectangle x:Name="A" Visibility="{Binding Path=SignalA, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="30" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
+        <Rectangle x:Name="B" Visibility="{Binding Path=SignalB, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="140" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="30" Grid.Row="1"/>
+        <Rectangle x:Name="C" Visibility="{Binding Path=SignalC, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="140" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="30" Grid.Row="1" Grid.Column="2"/>
+        <Rectangle x:Name="D" Visibility="{Binding Path=SignalD, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="30" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="140" Grid.Column="1" Grid.Row="2"/>
+        <Rectangle x:Name="E" Visibility="{Binding Path=SignalE, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="140" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="30" Grid.Row="3"/>
+        <Rectangle x:Name="F" Visibility="{Binding Path=SignalF, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="140" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="30" Grid.Row="3" Grid.Column="2"/>
+        <Rectangle x:Name="G" Visibility="{Binding Path=SignalG, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" Height="30" Stroke="GreenYellow" Fill="Green" VerticalAlignment="Center" Width="140" Grid.Column="1" Grid.Row="4"/>
+    </Grid>
+</UserControl>
