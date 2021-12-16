@@ -71,30 +71,30 @@ namespace _8.Tests
         [Fact]
         public void CountEasyDigits()
         {
-            var unscrambler = new Unscrambler();
+            var unscrambler = new Unscrambler(input);
             Assert.Equal(26, unscrambler.CountEasyDigits(input));
         }
 
         [Fact]
         public void UnscramblerCanUnscramble()
         {
-            var unscrambler = new Unscrambler();
-            Assert.Equal("8394", unscrambler.UnscrambleLine(input[0]));
-            Assert.Equal("9781", unscrambler.UnscrambleLine(input[1]));
-            Assert.Equal("1197", unscrambler.UnscrambleLine(input[2]));
-            Assert.Equal("9361", unscrambler.UnscrambleLine(input[3]));
-            Assert.Equal("4873", unscrambler.UnscrambleLine(input[4]));
-            Assert.Equal("8418", unscrambler.UnscrambleLine(input[5]));
-            Assert.Equal("4548", unscrambler.UnscrambleLine(input[6]));
-            Assert.Equal("1625", unscrambler.UnscrambleLine(input[7]));
-            Assert.Equal("8717", unscrambler.UnscrambleLine(input[8]));
-            Assert.Equal("4315", unscrambler.UnscrambleLine(input[9]));
+            var unscrambler = new Unscrambler(input);
+            Assert.Equal("8394", unscrambler.Lines[0].DecryptedOutput);
+            Assert.Equal("9781", unscrambler.Lines[1].DecryptedOutput);
+            Assert.Equal("1197", unscrambler.Lines[2].DecryptedOutput);
+            Assert.Equal("9361", unscrambler.Lines[3].DecryptedOutput);
+            Assert.Equal("4873", unscrambler.Lines[4].DecryptedOutput);
+            Assert.Equal("8418", unscrambler.Lines[5].DecryptedOutput);
+            Assert.Equal("4548", unscrambler.Lines[6].DecryptedOutput);
+            Assert.Equal("1625", unscrambler.Lines[7].DecryptedOutput);
+            Assert.Equal("8717", unscrambler.Lines[8].DecryptedOutput);
+            Assert.Equal("4315", unscrambler.Lines[9].DecryptedOutput);
         }
 
         [Fact]
         public void UnscramblerChecksumOk()
         {
-            var unscrambler = new Unscrambler();
+            var unscrambler = new Unscrambler(input);
             Assert.Equal(61229, unscrambler.UnscrambleInput(input));
         }
     }

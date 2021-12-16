@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace _8
 {
@@ -17,51 +18,107 @@ namespace _8
         {
             InitializeComponent();
 
+            for (int col = 0; col < 15; col++)
+            {
+                // arbratrary grid binding numbers - skip 10, it's a gap
+                // skip the odd row numbers as they're gaps too
+                if (col == 10)
+                    col++;
+
+                encryptedDigits.Add(CreateDigit(col, 0));
+                decryptedDigits.Add(CreateDigit(col, 2));
+                resultDigits.Add(CreateDigit(col, 4));
+            }
+
             ReadDigits();
         }
+
+        private Digit CreateDigit(int col, int row)
+        {
+            var digit = new Digit();
+            if (col > 10)
+            {
+                digit.FillColor = System.Windows.Media.Brushes.Blue;
+                digit.StrokeColor = System.Windows.Media.Brushes.AliceBlue;
+            }
+            if (row == 4)
+            {
+                digit.FillColor = System.Windows.Media.Brushes.MediumVioletRed;
+                digit.StrokeColor = System.Windows.Media.Brushes.PaleVioletRed;
+            }
+            Grid.SetRow(digit, row);
+            Grid.SetColumn(digit, col);
+            mainGrid.Children.Add(digit);
+            return digit;
+        }
+
+        List<Digit> encryptedDigits = new List<Digit>();
+        List<Digit> decryptedDigits = new List<Digit>();
+        List<Digit> resultDigits = new List<Digit>();
 
         private async Task ReadDigits()
         {
             var lines = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "input.txt"));
+            var unscrambler = new Unscrambler(lines);
 
-            var easyDigits = new Unscrambler().CountEasyDigits(lines).ToString();
-            var checksum = new Unscrambler().UnscrambleInput(lines);
-            MessageBox.Show(checksum.ToString());
+            var easyDigits = unscrambler.EasyDigits.ToString();
+            var checksum = unscrambler.Checksum.ToString();
 
-            if (easyDigits.Length > 0)
-                B1.SignalDigit = easyDigits[0];
-            if (easyDigits.Length > 1)
-                B2.SignalDigit = easyDigits[1];
-            if (easyDigits.Length > 2)
-                B3.SignalDigit = easyDigits[2];
-            if (easyDigits.Length > 3)
-                B4.SignalDigit = easyDigits[3];
-            if (easyDigits.Length > 4)
-                throw new NotSupportedException($"{easyDigits} is too long to display");
+            for (int i = 0; i < checksum.Length; i++)
+                resultDigits[i].SignalDigit = checksum[i];
 
+            for (int i = 0; i < easyDigits.Length; i++)
+                resultDigits[10 + i].SignalDigit = easyDigits[i];
 
-            foreach (var line in lines)
+            foreach (var line in unscrambler.Lines)
             {
-                var split = line.Split(" | ");
-                var input = split[0].Split(" ");
-                var output = split[1].Split(" ");
-
-                T2.Signal = "";
-                T3.Signal = "";
-                T4.Signal = "";
-
-                foreach (var digit in input)
-                {
-                    T1.Signal = digit;
-                    await Task.Delay(100);
-                }
-
-                T1.Signal = output[0];
-                T2.Signal = output[1];
-                T3.Signal = output[2];
-                T4.Signal = output[3];
+                await Task.WhenAll(DisplayLine(line.Input, line.Output, encryptedDigits), DisplayDecryptedLine(line.DecryptedInput, line.DecryptedOutput, decryptedDigits));
 
                 await Task.Delay(1000);
+
+                foreach (var digit in encryptedDigits)
+                    digit.Signal = "";
+
+                foreach (var digit in decryptedDigits)
+                    digit.Signal = "";
+            }
+        }
+
+        private async Task DisplayDecryptedLine(string decryptedInput, string decryptedOutput, List<Digit> display)
+        {
+            await Task.Delay(240);
+
+            int x = 0;
+            for (int i = 0; i < decryptedInput.Length; i++)
+            {
+                display[x++].SignalDigit = decryptedInput[i];
+                await Task.Delay(40);
+            }
+
+            await Task.Delay(240);
+
+            for (int i = 0; i < decryptedOutput.Length; i++)
+            {
+                display[x++].SignalDigit = decryptedOutput[i];
+                await Task.Delay(40);
+            }
+        }
+
+        private async Task DisplayLine(string[] input, string[] output, List<Digit> display)
+        {
+            int x = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                display[x++].Signal = input[i];
+                await Task.Delay(40);
+            }
+
+            await Task.Delay(240);
+
+            for (int i = 0; i < output.Length; i++)
+            {
+                encryptedDigits[x++].Signal = output[i];
+                await Task.Delay(40);
             }
         }
 

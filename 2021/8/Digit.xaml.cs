@@ -34,7 +34,7 @@ namespace _8
             set
             {
                 _signal = value;
-                NotifyPropertyChanged();
+                NotifySignalChanged();
             }
         }
 
@@ -79,6 +79,28 @@ namespace _8
             }
         }
 
+        private Brush _strokeColor = Brushes.GreenYellow;
+        public Brush StrokeColor
+        {
+            get => _strokeColor;
+            set
+            {
+                _strokeColor = value;
+                NotifyColorChanged();
+            }
+        }
+
+        private Brush _fillColor = Brushes.Green;
+        public Brush FillColor
+        {
+            get => _fillColor;
+            set
+            {
+                _fillColor = value;
+                NotifyColorChanged();
+            }
+        }
+
         private bool CheckVisibility(char signalToCheck)
         {
             return Signal?.Contains(signalToCheck) == true;
@@ -120,7 +142,8 @@ namespace _8
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged()
+
+        protected void NotifySignalChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SignalA)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SignalB)));
@@ -129,6 +152,12 @@ namespace _8
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SignalE)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SignalF)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SignalG)));
+        }
+
+        protected void NotifyColorChanged()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FillColor)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StrokeColor)));
         }
     }
 }

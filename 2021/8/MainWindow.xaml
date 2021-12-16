@@ -5,26 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_8"
         mc:Ignorable="d"
-        Title="MainWindow" Height="820" Width="880" SizeToContent="WidthAndHeight">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="220"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="390"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="390"/>
-        </Grid.RowDefinitions>
-        <local:Digit x:Name="T1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <local:Digit x:Name="T2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
-        <local:Digit x:Name="T3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
-        <local:Digit x:Name="T4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3"/>
-        <local:Digit x:Name="B1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
-        <local:Digit x:Name="B2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
-        <local:Digit x:Name="B3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
-        <local:Digit x:Name="B4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="3"/>
-    </Grid>
+        Title="MainWindow" Height="700" Width="1600" SizeToContent="Manual">
+    <Viewbox StretchDirection="Both" Stretch="Uniform">
+        <Grid x:Name="mainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="390"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="390"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="390"/>
+            </Grid.RowDefinitions>
+            <!--<local:Digit x:Name="T1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <local:Digit x:Name="T2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+            <local:Digit x:Name="T3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
+            <local:Digit x:Name="T4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3"/>
+            <local:Digit x:Name="B1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+            <local:Digit x:Name="B2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
+            <local:Digit x:Name="B3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
+            <local:Digit x:Name="B4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="3"/>-->
+        </Grid>
+    </Viewbox>
 </Window>
