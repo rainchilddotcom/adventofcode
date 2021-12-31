@@ -21,7 +21,8 @@ namespace _12
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        private CaveDrawer caveDrawer;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,12 +31,21 @@ namespace _12
             var cave = new Cave();
             cave.ParseRooms(input);
 
+            roomCount.Text = $"Room Count: {cave.Rooms.Count}";
+
             var paths = cave.CalculatePaths("start", "end");
-            MessageBox.Show(paths.Count.ToString());
+            pathCount.Text = $"Path Count: {paths.Count}";
 
             var stroll = cave.CalculateLeisurelyStroll("start", "end");
-            MessageBox.Show(stroll.Count.ToString());
+            leisurelyPathCount.Text = $"Stroll Count: {stroll.Count}";
 
+            caveDrawer = new CaveDrawer(cave, myCanvas);
+            caveDrawer.Draw();
+        }
+
+        private void drawNextButton_Click(object sender, RoutedEventArgs e)
+        {
+            caveDrawer.DrawNext();
         }
 
         /* --- Day 12: Passage Pathing ---

@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:_12"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <StackPanel Margin="8">
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="drawNextButton" Content="Draw Next" Click="drawNextButton_Click" />
+            <TextBlock x:Name="roomCount" Padding="0,8,8,8"/>
+            <TextBlock x:Name="pathCount" Padding="0,8,8,8"/>
+            <TextBlock x:Name="leisurelyPathCount" Padding="0,8,8,8"/>
+        </StackPanel>
+        <Canvas x:Name="myCanvas"/>
+    </StackPanel>
 </Window>
