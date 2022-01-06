@@ -53,16 +53,34 @@ namespace _11.Tests
 7922286866
 6789998766";
 
+        const string miniInput = @"11111
+19991
+19191
+19991
+11111";
+
+        const string miniStep1 = @"34543
+40004
+50005
+40004
+34543";
+
+        const string miniStep2 = @"45654
+51115
+61116
+51115
+45654";
+
         [Fact]
         public void TestMiniField()
         {
-            var octo314 = new OctoThreePointOneFour("11111\r\n19991\r\n19191\r\n19991\r\n11111");
+            var octo314 = new OctoThreePointOneFour(miniInput);
 
             octo314.Step();
-            Assert.Equal("34543\r\n40004\r\n50005\r\n40004\r\n34543", octo314.Field);
+            Assert.Equal(miniStep1, octo314.Field);
 
             octo314.Step();
-            Assert.Equal("45654\r\n51115\r\n61116\r\n51115\r\n45654", octo314.Field);
+            Assert.Equal(miniStep2, octo314.Field);
         }
 
         [Fact]
