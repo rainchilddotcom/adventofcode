@@ -49,5 +49,17 @@ namespace _18
                 return new SnailfishNumber(Convert.ToInt32(number));
             }
         }
+
+        public List<SnailfishNumber> ParseAllNumbers(string[] numbers)
+        {
+            var list = new List<SnailfishNumber>();
+            
+            foreach(var number in numbers)
+            {
+                list.Add(Parse(number));
+            }
+
+            return list;
+        }
     }
 }

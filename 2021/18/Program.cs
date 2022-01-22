@@ -7,6 +7,9 @@ namespace _18
     {
         static void Main(string[] args)
         {
+            if (System.Diagnostics.Debugger.IsAttached)
+                Console.WriteLine("Don't expect good performance if you run with the debugger attached...");
+
             var input = File.ReadAllLines(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "input.txt"));
 
             var parser = new SnailfishNumberParser();
@@ -15,11 +18,21 @@ namespace _18
             var number = parser.Parse(input[0]);
             for (int i = 1; i < input.Length; i++)
             {
+                Console.Write($"{DateTime.Now.ToString("HH:mm:ss")} Processing {i}\r");
                 number = new SnailfishNumber(number, parser.Parse(input[i]));
                 reducer.ReduceAll(number);
             }
 
             Console.WriteLine($"Magnitude of Homework: {number.Magnitude}");
+            Console.WriteLine();
+
+            var magnitudeFinder = new MagnitudeFinder();
+            magnitudeFinder.FindLargest(input, out var bestLeft, out var bestRight, out var bestResult, out var bestMagnitude);
+
+            Console.WriteLine($"Largest Magnitude: {bestMagnitude}");
+            Console.WriteLine($"Left: {bestLeft}");
+            Console.WriteLine($"Right: {bestRight}");
+            Console.WriteLine($"Result: {bestResult}");
         }
 
 

@@ -146,34 +146,49 @@ namespace _18.Tests
             n.Magnitude.Should().Be(expectedMagnitude);
         }
 
+        readonly string[] ExampleHomework = 
+@"[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]
+[[[5,[2,8]],4],[5,[[9,9],0]]]
+[6,[[[6,2],[5,6]],[[7,6],[4,7]]]]
+[[[6,[0,7]],[0,9]],[4,[9,[9,0]]]]
+[[[7,[6,4]],[3,[1,3]]],[[[5,5],1],9]]
+[[6,[[7,3],[3,2]]],[[[3,8],[5,7]],4]]
+[[[[5,4],[7,7]],8],[[8,3],8]]
+[[9,3],[[9,9],[6,[4,9]]]]
+[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]
+[[[[5,2],5],[8,[3,7]]],[[5,[7,5]],[4,4]]]".Split(Environment.NewLine);
+
         [Fact]
-        public void ExampleHomework()
+        public void ExampleHomeworkIsProcessedCorrectly()
         {
             var parser = new SnailfishNumberParser();
             var reducer = new SnailfishReducer();
 
-            var number = parser.Parse("[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]");
-            number = new SnailfishNumber(number, parser.Parse("[[[5,[2, 8]], 4],[5,[[9,9],0]]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[6,[[[6,2],[5,6]],[[7,6],[4,7]]]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[[6,[0,7]],[0,9]],[4,[9,[9,0]]]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[[7,[6,4]],[3,[1,3]]],[[[5,5],1],9]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[6,[[7,3],[3,2]]],[[[3,8],[5,7]],4]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[[[5,4],[7,7]],8],[[8,3],8]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[9,3],[[9,9],[6,[4,9]]]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]"));
-            reducer.ReduceAll(number);
-            number = new SnailfishNumber(number, parser.Parse("[[[[5,2],5],[8,[3,7]]],[[5,[7,5]],[4,4]]]"));
-            reducer.ReduceAll(number);
+            var number = parser.Parse(ExampleHomework[0]);
+
+            for (int i = 1; i < ExampleHomework.Length; i++)
+            {
+                number = new SnailfishNumber(number, parser.Parse(ExampleHomework[i]));
+                reducer.ReduceAll(number);
+            }
 
             number.ToString().Should().Be("[[[[6,6],[7,6]],[[7,7],[7,0]]],[[[7,7],[7,7]],[[7,8],[9,9]]]]");
             number.Magnitude.Should().Be(4140);
+        }
+
+        [Fact]
+        public void FindLargestMagnitudeOfTwoNumbers()
+        {
+            var parser = new SnailfishNumberParser();
+            var reducer = new SnailfishReducer();
+            var magnitudeFinder = new MagnitudeFinder();
+
+            magnitudeFinder.FindLargest(ExampleHomework, out var bestLeft, out var bestRight, out var bestResult, out var bestMagnitude);
+
+            bestMagnitude.Should().Be(3993);
+            bestLeft.Should().Be("[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]");
+            bestRight.Should().Be("[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]");
+            bestResult.Should().Be("[[[[7,8],[6,6]],[[6,0],[7,7]]],[[[7,8],[8,8]],[[7,9],[0,6]]]]");
         }
     }
 }

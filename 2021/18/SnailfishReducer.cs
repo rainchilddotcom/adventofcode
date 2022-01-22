@@ -47,7 +47,8 @@ namespace _18
 
                 for (int i = 0; i < list.Count; i++)
                 {
-                    list[i].Number.Split();
+                    if (list[i].Number.IsValue())
+                        list[i].Number.Split();
                 }
             }
             catch (SplitHappens)
