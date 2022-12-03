@@ -11,12 +11,16 @@
         public string[] LoadInput()
         {
             var assembly = this.GetType().Assembly;
+            var fileName = assembly.GetManifestResourceNames().First(x => x.EndsWith("input.txt"));
 
-            using Stream fileStream = assembly.GetManifestResourceStream(assembly.GetManifestResourceNames().First(x => x.EndsWith("input.txt")));
+            using Stream? fileStream = assembly.GetManifestResourceStream(fileName);
+            if (fileStream == null)
+                throw new FileNotFoundException("puzzle input not found in assembly");
+
             using StreamReader reader = new StreamReader(fileStream);
 
             var lines = new List<string>();
-            string line;
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
                 lines.Add(line);

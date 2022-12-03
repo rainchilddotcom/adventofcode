@@ -17,9 +17,9 @@ namespace _3
             MisplacedPriority = Item.CalculatePriority(MispackedItem);
         }
 
-        public string? Items { get; init; }
-        public string? Compartment1 { get; init; }
-        public string? Compartment2 { get; init; }
+        public string Items { get; init; }
+        public string Compartment1 { get; init; }
+        public string Compartment2 { get; init; }
         public char MispackedItem { get; init; }
         public int MisplacedPriority { get; init; }
     }
