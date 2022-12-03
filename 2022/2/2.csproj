@@ -15,4 +15,8 @@
     <EmbeddedResource Include="input.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\0\0.csproj" />
+  </ItemGroup>
+
 </Project>
