@@ -10,11 +10,15 @@ namespace _2
     public class Day2
         : Puzzle
     {
+        public override string Part1Caption() => "Score";
+
         public override string Part1Answer()
         {
             var tournament = new TournamentLoaderPart1().LoadTournament(LoadInput());
             return tournament.CalculateScore().ToString();
         }
+
+        public override string Part2Caption() => "Score";
 
         public override string Part2Answer()
         {

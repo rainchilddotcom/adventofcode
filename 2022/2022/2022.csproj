@@ -54,4 +54,10 @@
 	  <ProjectReference Include="..\3\3.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="DayTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

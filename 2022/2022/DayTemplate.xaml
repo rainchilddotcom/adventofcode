@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_2022.DayTemplate">
+    <Border VerticalOptions="Start">
+        <VerticalStackLayout>
+            <Label
+                x:Name="DayNumber"
+                Text="Day X"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <HorizontalStackLayout>
+                <Button
+                    Text="Part 1"
+                    Clicked="Part1_Clicked"
+                    HorizontalOptions="Center" />
+
+                <Button
+                    Text="Part 2"
+                    Clicked="Part2_Clicked"
+                    HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Label
+                x:Name="AnswerCaption"
+                Text=""
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Entry
+                x:Name="AnswerValue"
+                IsReadOnly="True"
+                />
+
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

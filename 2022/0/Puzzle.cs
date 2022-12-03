@@ -2,7 +2,10 @@
 {
     public abstract class Puzzle
     {
+        public abstract string Part1Caption();
         public abstract string Part1Answer();
+
+        public abstract string Part2Caption();
         public abstract string Part2Answer();
 
         public string[] LoadInput()

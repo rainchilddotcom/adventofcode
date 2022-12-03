@@ -1,4 +1,5 @@
-﻿using _1;
+﻿using _0;
+using _1;
 using _2;
 using _3;
 using Microsoft.Maui.Controls.Shapes;
@@ -13,41 +14,15 @@ public partial class MainPage
 	public MainPage()
 	{
 		InitializeComponent();
+
+        RegisterDay(1, new Day1());
+        RegisterDay(2, new Day2());
+        RegisterDay(3, new Day3());
+        //RegisterDay(4, new Day4());
 	}
 
-    private void Day1_1_Clicked(object sender, EventArgs e)
+    private void RegisterDay(int number, Puzzle puzzle)
     {
-        Day1_Caption.Text = "Calories Carried (top 1)";
-        Day1_Answer.Text = new Day1().Part1Answer();
-    }
-
-    private void Day1_2_Clicked(object sender, EventArgs e)
-    {
-        Day1_Caption.Text = "Calories Carried (top 3)";
-        Day1_Answer.Text = new Day1().Part2Answer();
-    }
-
-    private void Day2_1_Clicked(object sender, EventArgs e)
-    {
-		Day2_Caption.Text = "Score";
-		Day2_Answer.Text = new Day2().Part1Answer();
-    }
-
-    private void Day2_2_Clicked(object sender, EventArgs e)
-    {
-        Day2_Caption.Text = "Score";
-        Day2_Answer.Text = new Day2().Part2Answer();
-    }
-
-    private void Day3_1_Clicked(object sender, EventArgs e)
-    {
-        Day3_Caption.Text = "Misplaced Priority";
-        Day3_Answer.Text = new Day3().Part1Answer();
-    }
-
-    private void Day3_2_Clicked(object sender, EventArgs e)
-    {
-        Day3_Caption.Text = "Misplaced Priority";
-        Day3_Answer.Text = new Day3().Part2Answer();
+        Flex.Children.Add(new DayTemplate(number, puzzle));
     }
 }

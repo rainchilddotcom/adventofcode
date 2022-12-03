@@ -10,12 +10,16 @@ namespace _3
     public class Day3
         : Puzzle
     {
+        public override string Part1Caption() => "Misplaced Priority";
+
         public override string Part1Answer()
         {
             var rucksacks = new RucksackLoader().LoadRucksacks(LoadInput());
 
             return rucksacks.Sum(x => x.MisplacedPriority).ToString();
         }
+
+        public override string Part2Caption() => "Misplaced Priority";
 
         public override string Part2Answer()
         {
