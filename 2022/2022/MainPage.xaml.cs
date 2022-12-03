@@ -1,5 +1,6 @@
 ﻿using _1;
 using _2;
+using _3;
 using Microsoft.Maui.Controls.Shapes;
 using System.Diagnostics;
 using System.Reflection;
@@ -74,5 +75,22 @@ public partial class MainPage : ContentPage
 
         Day2_Caption.Text = "Score";
         Day2_Answer.Text = tournament.CalculateScore().ToString();
+    }
+
+    private void Day3_1_Clicked(object sender, EventArgs e)
+    {
+        var rucksacks = new RucksackLoader().LoadRucksacks(LoadFileFromEmbeddedResource(typeof(RucksackLoader), "_3.input.txt"));
+
+        Day3_Caption.Text = "Misplaced Priority";
+        Day3_Answer.Text = rucksacks.Sum(x => x.MisplacedPriority).ToString();
+    }
+
+    private void Day3_2_Clicked(object sender, EventArgs e)
+    {
+        var rucksacks = new RucksackLoader().LoadRucksacks(LoadFileFromEmbeddedResource(typeof(RucksackLoader), "_3.input.txt"));
+        var groups = Group.AssignGroups(rucksacks);
+
+        Day3_Caption.Text = "Misplaced Priority";
+        Day3_Answer.Text = groups.Sum(x => x.BadgePriority).ToString();
     }
 }

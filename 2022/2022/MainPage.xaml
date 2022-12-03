@@ -70,7 +70,40 @@
 
                 </VerticalStackLayout>
             </Border>
-            
+
+            <Border>
+                <VerticalStackLayout>
+                    <Label
+                        Text="Day 3"
+                        FontSize="32"
+                        HorizontalOptions="Center" />
+
+                    <HorizontalStackLayout>
+                        <Button
+                            Text="Part 1"
+                            Clicked="Day3_1_Clicked"
+                            HorizontalOptions="Center" />
+
+                        <Button
+                            Text="Part 2"
+                            Clicked="Day3_2_Clicked"
+                            HorizontalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Label
+                        x:Name="Day3_Caption"
+                        Text=""
+                        FontSize="18"
+                        HorizontalOptions="Center" />
+
+                    <Entry
+                        x:Name="Day3_Answer"
+                        IsReadOnly="True"
+                        />
+
+                </VerticalStackLayout>
+            </Border>
+
             <VerticalStackLayout
                 Spacing="25"
                 Padding="30,0"

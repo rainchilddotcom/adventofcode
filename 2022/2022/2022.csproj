@@ -51,6 +51,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\1\1.csproj" />
 	  <ProjectReference Include="..\2\2.csproj" />
+	  <ProjectReference Include="..\3\3.csproj" />
 	</ItemGroup>
 
 </Project>
