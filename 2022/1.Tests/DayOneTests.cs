@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace _1.Tests
 {
-    public class UnitTests
+    public class DayOneTests
     {
         const string testInput =
 @"1000

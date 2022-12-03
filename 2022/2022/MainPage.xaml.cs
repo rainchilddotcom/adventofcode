@@ -1,4 +1,5 @@
 ﻿using _1;
+using _2;
 using Microsoft.Maui.Controls.Shapes;
 using System.Diagnostics;
 using System.Reflection;
@@ -50,12 +51,28 @@ public partial class MainPage : ContentPage
 		MostCaloriesCarriedAnswer.Text = answer.ToString();
     }
 
-    private void Day_1_2_Clicked(object sender, EventArgs e)
+    private void Day1_2_Clicked(object sender, EventArgs e)
     {
         var expedition = new Expedition(new ElfLoader().LoadElves(LoadFileFromEmbeddedResource(typeof(Elf), "_1.input.txt")));
 		var answer = expedition.ElvesWithMostCalories(3).Sum(x => x.TotalCalories);
 
         MostCaloriesCarried.Text = "Calories Carried (top 3)";
         MostCaloriesCarriedAnswer.Text = answer.ToString();
+    }
+
+    private void Day2_1_Clicked(object sender, EventArgs e)
+    {
+		var tournament = new TournamentLoaderPart1().LoadTournament(LoadFileFromEmbeddedResource(typeof(Tournament), "_2.input.txt"));
+
+		Day2_Caption.Text = "Score";
+		Day2_Answer.Text = tournament.CalculateScore().ToString();
+    }
+
+    private void Day2_2_Clicked(object sender, EventArgs e)
+    {
+        var tournament = new TournamentLoaderPart2().LoadTournament(LoadFileFromEmbeddedResource(typeof(Tournament), "_2.input.txt"));
+
+        Day2_Caption.Text = "Score";
+        Day2_Answer.Text = tournament.CalculateScore().ToString();
     }
 }

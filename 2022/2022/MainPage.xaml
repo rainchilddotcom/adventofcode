@@ -20,7 +20,7 @@
 
                         <Button
                             Text="Part 2"
-                            Clicked="Day_1_2_Clicked"
+                            Clicked="Day1_2_Clicked"
                             HorizontalOptions="Center" />
                     </HorizontalStackLayout>
 
@@ -38,6 +38,39 @@
                 </VerticalStackLayout>
             </Border>
 
+            <Border>
+                <VerticalStackLayout>
+                    <Label
+                        Text="Day 2"
+                        FontSize="32"
+                        HorizontalOptions="Center" />
+
+                    <HorizontalStackLayout>
+                        <Button
+                            Text="Part 1"
+                            Clicked="Day2_1_Clicked"
+                            HorizontalOptions="Center" />
+
+                        <Button
+                            Text="Part 2"
+                            Clicked="Day2_2_Clicked"
+                            HorizontalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Label
+                        x:Name="Day2_Caption"
+                        Text=""
+                        FontSize="18"
+                        HorizontalOptions="Center" />
+
+                    <Entry
+                        x:Name="Day2_Answer"
+                        IsReadOnly="True"
+                        />
+
+                </VerticalStackLayout>
+            </Border>
+            
             <VerticalStackLayout
                 Spacing="25"
                 Padding="30,0"
