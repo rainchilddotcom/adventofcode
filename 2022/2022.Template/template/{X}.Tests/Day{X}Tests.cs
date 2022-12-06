@@ -5,7 +5,9 @@ namespace _{X}.Tests
         const string testInput =
 @"
 ";
-        
+
+        private string[] input { get { return testInput.Split(Environment.NewLine); } }
+
         [Test]
         public void Test()
         {
