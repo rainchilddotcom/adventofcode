@@ -10,20 +10,26 @@ namespace _7
     public class Day7
         : Puzzle
     {
-        public override string Part1Caption() => "TODO";
+        public override string Part1Caption() => "Naive Prunable Space";
 
         public override string Part1Answer()
         {
             var input = LoadInput();
-            throw new NotImplementedException();
+            var etfs = new ElfTermFileSystemLoader()
+                .Load(input);
+            return etfs.PrunableSpace().ToString();
         }
 
-        public override string Part2Caption() => "TODO";
+        public override string Part2Caption() => "Smallest Prunable Folder";
 
         public override string Part2Answer()
         {
             var input = LoadInput();
-            throw new NotImplementedException();
+            var etfs = new ElfTermFileSystemLoader()
+                .Load(input);
+            var prunable = etfs.SmallestPrunableDirectory();
+
+            return $"name={prunable.Name}, size={prunable.Size}";
         }
     }
 }
