@@ -10,20 +10,28 @@ namespace _8
     public class Day8
         : Puzzle
     {
-        public override string Part1Caption() => "TODO";
+        public override string Part1Caption() => "Total Visible Trees";
 
         public override string Part1Answer()
         {
             var input = LoadInput();
-            throw new NotImplementedException();
+            return new TreeHeightMap(input)
+                .TotalVisibleTrees
+                .ToString();
         }
 
-        public override string Part2Caption() => "TODO";
+        public override string Part2Caption() => "Highest Scenic Score";
 
         public override string Part2Answer()
         {
             var input = LoadInput();
-            throw new NotImplementedException();
+            return new TreeHeightMap(input)
+                .AsEnumerable()
+                .OrderByDescending(x => x.ScenicScore)
+                .Take(1)
+                .Single()
+                .ScenicScore
+                .ToString();
         }
     }
 }

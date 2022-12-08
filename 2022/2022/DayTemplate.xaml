@@ -33,6 +33,12 @@
                 IsReadOnly="True"
                 />
 
+            <Label
+                x:Name="AnswerTime"
+                Text=""
+                FontSize="18"
+                HorizontalOptions="Center" />
+
         </VerticalStackLayout>
     </Border>
 </ContentView>
