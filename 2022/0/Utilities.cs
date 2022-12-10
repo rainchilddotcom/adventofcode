@@ -21,5 +21,10 @@ namespace _0
         {
             return value >= lowerBound && value <= upperBound;
         }
+
+        public static bool Between(this int value, int lowerBound, int upperBound)
+        {
+            return value >= lowerBound && value <= upperBound;
+        }
     }
 }

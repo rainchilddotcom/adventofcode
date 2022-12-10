@@ -28,9 +28,11 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <Entry
+            <Editor
                 x:Name="AnswerValue"
                 IsReadOnly="True"
+                FontFamily="Consolas"
+                AutoSize="TextChanges"
                 />
 
             <Label

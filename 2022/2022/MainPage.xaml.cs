@@ -8,6 +8,7 @@ using _6;
 using _7;
 using _8;
 using _9;
+using _10;
 // new using goes here
 using Microsoft.Maui.Controls.Shapes;
 using System.Diagnostics;
@@ -31,6 +32,7 @@ public partial class MainPage
         RegisterDay(7, new Day7());
         RegisterDay(8, new Day8());
         RegisterDay(9, new Day9());
+        RegisterDay(10, new Day10());
         // new day goes here
     }
 
