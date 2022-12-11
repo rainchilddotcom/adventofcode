@@ -26,5 +26,55 @@ namespace _0
         {
             return value >= lowerBound && value <= upperBound;
         }
+
+        public static List<int> ParseIntList(this string input, char separator = ',')
+        {
+            var list = new List<int>();
+            foreach (var item in input.Split(separator))
+            {
+                list.Add(int.Parse(item));
+            }
+            return list;
+        }
+
+        public static long CalculateHighestPrime(this long value)
+        {
+            // didn't need this in the end, but it could be handy in future?
+            long orig = value;
+            var factors = new List<long>();
+
+            int factor = 2;
+            while (value % factor == 0)
+            {
+                factors.Add(factor);
+                value /= factor;
+            }
+
+            factor = 3;
+            while (factor * factor <= value)
+            {
+                // only have to check up to the square root
+                if (value % factor == 0)
+                {
+                    factors.Add(factor);
+                    value /= factor;
+                }
+                else
+                {
+                    factor += 2;
+                }
+            }
+
+            if (value != 1)
+            {
+                factors.Add(value);
+            }
+
+            var max = factors.Max();
+
+            Console.WriteLine($"Factoring {orig} into {max}");
+
+            return max;
+        }
     }
 }
