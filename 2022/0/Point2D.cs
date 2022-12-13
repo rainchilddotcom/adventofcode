@@ -10,5 +10,10 @@
 
         public int X { get; set; }
         public int Y { get; set; }
+
+        public virtual char Placeholder()
+        {
+            return '#';
+        }
     }
 }

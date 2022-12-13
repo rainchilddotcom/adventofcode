@@ -55,7 +55,7 @@
 
             var visited = new int[heightMap.Width, heightMap.Height];
 
-            heightMapExplorer.Explore(new Point2D(0, 0), point =>
+            heightMapExplorer.Explore(new Point3D(0, 0, 0), point =>
             {
                 visited[point.X, point.Y]++;
                 return true;

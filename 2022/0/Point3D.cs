@@ -16,5 +16,10 @@ namespace _0
         }
 
         public int Z { get; set; }
+
+        public override char Placeholder()
+        {
+            return Z.ToString()[0];
+        }
     }
 }
