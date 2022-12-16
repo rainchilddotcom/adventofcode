@@ -65,6 +65,7 @@
     <ProjectReference Include="..\10\10.csproj" />
     <ProjectReference Include="..\11\11.csproj" />
     <ProjectReference Include="..\12\12.csproj" />
+    <ProjectReference Include="..\13\13.csproj" />
     <!-- New ProjectReference Goes Here -->
   </ItemGroup>
 
