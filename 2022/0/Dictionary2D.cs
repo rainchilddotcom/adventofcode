@@ -46,6 +46,8 @@
 
         public int Height { get { return _dictionary.Max(x => x.Value.Count); } }
 
+        public int Count { get { return _dictionary.Count + _dictionary.Values.Sum(value => value.Count); } }
+
         public IEnumerable<TValue> AsEnumerable()
         {
             foreach (var kvp in _dictionary)

@@ -37,6 +37,22 @@ namespace _0
             return list;
         }
 
+        public static Point2D ParseCoordinate(this string input, char separator = ',')
+        {
+            var coordinates = input.Split(separator);
+            return new Point2D(Convert.ToInt32(coordinates[0]), Convert.ToInt32(coordinates[1]));
+        }
+
+        public static List<Point2D> ParsePointList(this string input, char xyseparator = ',', string pointseparator = " ")
+        {
+            var list = new List<Point2D>();
+            foreach (var item in input.Split(pointseparator))
+            {
+                list.Add(ParseCoordinate(item, xyseparator));
+            }
+            return list;
+        }
+
         public static long CalculateHighestPrime(this long value)
         {
             // didn't need this in the end, but it could be handy in future?
