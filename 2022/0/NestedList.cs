@@ -40,7 +40,47 @@ namespace _0
             }
             else
             {
-                return $"[{string.Join(',' , NestedValues)}]";
+                return $"[{string.Join(',', NestedValues)}]";
+            }
+        }
+
+        public static NestedList<T> Parse(string input)
+        {
+            int position = 0;
+
+            return ReadElement();
+
+            NestedList<T> ReadElement()
+            {
+                if (input[position] == '[')
+                {
+                    position++;
+                    var x = new NestedList<T>(new List<NestedList<T>>());
+
+                    while (input[position] != ']')
+                    {
+                        x.NestedValues.Add(ReadElement());
+                        if (input[position] == ',')
+                            position++;
+                    }
+
+                    position++;
+                    return x;
+                }
+
+                return ReadValue();
+            }
+
+            NestedList<T> ReadValue()
+            {
+                var value = "";
+                while (input[position] != ',' && input[position] != ']')
+                {
+                    value += input[position];
+                    position++;
+                }
+
+                return new NestedList<T>((T)Convert.ChangeType(value, typeof(T)));
             }
         }
     }
