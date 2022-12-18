@@ -13,8 +13,8 @@
         public int OffsetX { get { return _map.AsEnumerable().Min(x => x.X); } }
         public int OffsetY { get { return _map.AsEnumerable().Min(y => y.Y); } }
 
-        public int Width { get { return _map.AsEnumerable().Max(x => x.X); } }
-        public int Height { get { return _map.AsEnumerable().Max(y => y.Y); } }
+        public int Width { get { return _map.AsEnumerable().Max(x => x.X) + 1; } }
+        public int Height { get { return _map.AsEnumerable().Max(y => y.Y) + 1; } }
         public T this[int x, int y] { get { return _map[x, y]; } }
         
         public void Swap(T source, T target)
@@ -44,8 +44,8 @@
 
             int minX = OffsetX;
             int minY = OffsetY;
-            int maxX = Width + 1;
-            int maxY = Height + 1;
+            int maxX = Width;
+            int maxY = Height;
 
             char[,] map = new char[maxX, maxY];
 

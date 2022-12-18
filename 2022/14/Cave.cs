@@ -20,12 +20,12 @@ namespace _14
         {
             this[x, y].Z = "+";
             Spawners.Add(new Point2D(x, y));
-            AbyssLevel = this.Height + 3;
+            AbyssLevel = this.Height + 2;
         }
 
         public void AddFloor()
         {
-            var floorHeight = this.Height + 2;
+            var floorHeight = this.Height + 1;
             var floorLeft = this.Spawners.Min(x => x.X) - floorHeight - 1;
             var floorRight = this.Spawners.Max(x => x.X) + floorHeight + 2;
             for (int x = floorLeft; x < floorRight; x++)
