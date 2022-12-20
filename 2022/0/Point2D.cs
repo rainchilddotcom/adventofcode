@@ -15,6 +15,19 @@
         {
             return '#';
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Point2D<T> other)
+                return this.X.Equals(other.X) && this.Y.Equals(other.Y);
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.X.GetHashCode() + this.Y.GetHashCode();
+        }
     }
 
     public class Point2D

@@ -53,6 +53,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\15.Visualizer\15.Visualizer.csproj" />
 	  <ProjectReference Include="..\1\1.csproj" />
 	  <ProjectReference Include="..\2\2.csproj" />
 	  <ProjectReference Include="..\3\3.csproj" />

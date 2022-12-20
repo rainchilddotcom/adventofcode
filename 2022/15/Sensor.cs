@@ -15,6 +15,12 @@ namespace _15
             ClosestBeacon = closestBeacon;
             DistanceFromBeacon = CalculateDistance();
             Polygon = CalculatePolygon();
+
+            // calculate bounding dimensions
+            MinX = Polygon.Min(x => Math.Min(x.Start.X, x.End.X));
+            MinY = Polygon.Min(x => Math.Min(x.Start.Y, x.End.Y));
+            MaxX = Polygon.Max(x => Math.Max(x.Start.X, x.End.X));
+            MaxY = Polygon.Max(x => Math.Max(x.Start.Y, x.End.Y));
         }
 
         private int CalculateDistance()
@@ -25,7 +31,7 @@ namespace _15
         private List<Line> CalculatePolygon()
         {
             var list = new List<Line>();
-            
+
             list.Add(new Line(Position.X - DistanceFromBeacon, Position.Y, Position.X, Position.Y - DistanceFromBeacon));
             list.Add(new Line(Position.X, Position.Y - DistanceFromBeacon, Position.X + DistanceFromBeacon, Position.Y));
             list.Add(new Line(Position.X + DistanceFromBeacon, Position.Y, Position.X, Position.Y + DistanceFromBeacon));
@@ -44,9 +50,17 @@ namespace _15
             var points = Polygon
                 .Select(x => x.IntersectWith(line))
                 .Where(x => x != null)
+                .Distinct()
+                .OrderBy(x => x.X)
+                .ThenBy(x => x.Y)
                 .ToList();
 
             return points;
         }
+
+        public double MinX { get; init; }
+        public double MinY { get; init; }
+        public double MaxX { get; init; }
+        public double MaxY { get; init; }
     }
 }

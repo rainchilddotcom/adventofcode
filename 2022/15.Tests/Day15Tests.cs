@@ -46,8 +46,9 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3";
         }
 
         [Test]
-        [TestCase("Sensor at x=8, y=7: closest beacon is at x=2, y=10", -2, 10, 25, 10, 2, 10, 14, 10)]
-        public void SensorLineCoverage(string sensorDefinition, int p1x, int p1y, int p2x, int p2y, int p3x, int p3y, int p4x, int p4y)
+        [TestCase("Sensor at x=8, y=7: closest beacon is at x=2, y=10", -25, 10, 25, 10, 2, 10, 14, 10)]
+        [TestCase("Sensor at x=0, y=11: closest beacon is at x=2, y=10", -25, 11, 25, 11, -3, 11, 3, 11)]
+        public void SensorLineIntersections(string sensorDefinition, int p1x, int p1y, int p2x, int p2y, int p3x, int p3y, int p4x, int p4y)
         {
             var sensor = new SensorGridLoader().ParseSensor(sensorDefinition);
             var line = new Line(p1x, p1y, p2x, p2y);
@@ -55,9 +56,42 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3";
             intersections.Count().Should().Be(2);
             intersections.Should().Contain(x => x.X == p3x && x.Y == p3y);
             intersections.Should().Contain(x => x.X == p4x && x.Y == p4y);
+        }
 
-            var coveredLine = new Line(intersections[0], intersections[1]);
-            coveredLine.Length.Should().Be(13);
+        [Test]
+        [TestCase("Sensor at x=8, y=7: closest beacon is at x=2, y=10", -25, 10, 25, 10, 12)] // 13
+        public void SingleSensorLineCoverage(string sensorDefinition, int p1x, int p1y, int p2x, int p2y, int expectedCoverage)
+        {
+            var sensorGrid = new SensorGrid();
+            sensorGrid.Add(new SensorGridLoader().ParseSensor(sensorDefinition));
+            var line = new Line(p1x, p1y, p2x, p2y);
+            sensorGrid.CalculateCoverage(line)
+                .Should().Be(expectedCoverage);
+        }
+
+        [Test]
+        [TestCase(-10, -10, 90, -10, 0)] // 1
+        [TestCase(-10, -1, 90, -1, 28)]  // 31
+        [TestCase(-10, 9, 90, 9, 24)]    // 25
+        [TestCase(-10, 10, 90, 10, 26)]  // 27
+        [TestCase(-10, 11, 90, 11, 26)]  // 28
+        [TestCase(-10, 12, 90, 12, 27)]  // 29
+        public void SensorGridLineCoverage(int p1x, int p1y, int p2x, int p2y, int expectedCoverage)
+        {
+            var sensorGrid = new SensorGridLoader().LoadSensorGrid(input);
+            var line = new Line(p1x, p1y, p2x, p2y);
+            sensorGrid.CalculateCoverage(line)
+                .Should().Be(expectedCoverage);
+        }
+
+        [Test]
+        public void SensorGridBoundingCoordinates()
+        {
+            var sensorGrid = new SensorGridLoader().LoadSensorGrid(input);
+            sensorGrid.MinX.Should().Be(-8);
+            sensorGrid.MinY.Should().Be(-10);
+            sensorGrid.MaxX.Should().Be(28);
+            sensorGrid.MaxY.Should().Be(26);
         }
     }
 }
